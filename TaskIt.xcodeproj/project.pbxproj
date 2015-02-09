@@ -16,6 +16,7 @@
 		138C374D1A71BB8F00CFDCC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 138C374B1A71BB8F00CFDCC6 /* LaunchScreen.xib */; };
 		138C37591A71BB8F00CFDCC6 /* TaskItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138C37581A71BB8F00CFDCC6 /* TaskItTests.swift */; };
 		138C37631A71C26600CFDCC6 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138C37621A71C26600CFDCC6 /* TaskCell.swift */; };
+		13A9872B1A888CE600B3EF6A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A9872A1A888CE600B3EF6A /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		138C37571A71BB8F00CFDCC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		138C37581A71BB8F00CFDCC6 /* TaskItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItTests.swift; sourceTree = "<group>"; };
 		138C37621A71C26600CFDCC6 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		13A9872A1A888CE600B3EF6A /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				138C37441A71BB8F00CFDCC6 /* ViewController.swift */,
 				1351DB581A7A0B9500CCB8DE /* TaskDetailViewController.swift */,
 				1351DB561A7A071D00CCB8DE /* TaskModel.swift */,
+				13A9872A1A888CE600B3EF6A /* Date.swift */,
 				138C37621A71C26600CFDCC6 /* TaskCell.swift */,
 				138C37461A71BB8F00CFDCC6 /* Main.storyboard */,
 				138C37491A71BB8F00CFDCC6 /* Images.xcassets */,
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				138C37451A71BB8F00CFDCC6 /* ViewController.swift in Sources */,
+				13A9872B1A888CE600B3EF6A /* Date.swift in Sources */,
 				138C37631A71C26600CFDCC6 /* TaskCell.swift in Sources */,
 				1351DB571A7A071D00CCB8DE /* TaskModel.swift in Sources */,
 				138C37431A71BB8F00CFDCC6 /* AppDelegate.swift in Sources */,
