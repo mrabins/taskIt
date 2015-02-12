@@ -71,6 +71,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    @IBAction func addButtonTapped (sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("showTaskAdd", sender: self)
+    }
     
     // UITableViewDelegate
     

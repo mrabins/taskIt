@@ -27,7 +27,7 @@ class Date {
     class func toString (#date:NSDate) -> String {
         
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        dateStringFormatter.dateFormat = "MM-dd-yyyy"
         let dateString = dateStringFormatter.stringFromDate(date)
 
     return dateString
