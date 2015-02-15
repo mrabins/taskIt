@@ -117,7 +117,11 @@
                                 <action selector="cancelButtonTapped:" destination="Xaq-NZ-yI4" id="ELR-9j-kiu"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="N7Q-YP-xaD"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="N7Q-YP-xaD">
+                            <connections>
+                                <action selector="doneBarButtonItemPressed:" destination="Xaq-NZ-yI4" id="keq-4P-HK3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

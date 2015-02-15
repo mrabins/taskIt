@@ -12,24 +12,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
-    var taskArray: [TaskModel] = []
+    var baseArray: [[TaskModel]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let date1 = Date.from(year: 2014, month: 04, day: 15)
-        let date2 = Date.from(year: 2015, month: 01, day: 28)
-        let date3 = Date.from(year: 2013, month: 03, day: 19)
+        let date1 = Date.from(year: 2022, month: 12, day: 15)
+        let date2 = Date.from(year: 2011, month: 08, day: 28)
+        let date3 = Date.from(year: 2015, month: 03, day: 19)
         
-        let task1 = TaskModel (task: "Learn French", subtask: "Conjugate verbs", date: date1)
-        let task2 = TaskModel (task: "Figure out parse", subtask: "email fb", date: date2)
+        let task1 = TaskModel (task: "Learn French", subtask: "Conjugate verbs", date: date1, completed: false)
+        let task2 = TaskModel (task: "Figure out parse", subtask: "email fb", date: date2, completed: false)
         
-        taskArray = [task1, task2, TaskModel(task: "Emails", subtask: "check inbox", date: date3)]
+        let  taskArray = [task1, task2, TaskModel(task: "Emails", subtask: "check inbox", date: date3, completed: false)]
         
         tableView.reloadData()
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
+        taskArray = taskArray.sorted {
+            (taskOne:TaskModel, taskTwo:TaskModel) -> Bool in
+            
+            //Comparison Logic
+            return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
+        }
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,6 +80,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let indexPath = self.tableView.indexPathForSelectedRow()
             let thisTask = taskArray[indexPath!.row]
             detailVC.detailTaskModel = thisTask
+            detailVC.mainVC = self
+        }
+        
+        else if segue.identifier == "showTaskAdd" {
+            let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
+            addTaskVC.mainVC = self
+            
         }
     }
     
@@ -81,6 +100,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         println(indexPath.row)
         performSegueWithIdentifier("showTaskDetail", sender: self)
     }
+    
 }
 
 
