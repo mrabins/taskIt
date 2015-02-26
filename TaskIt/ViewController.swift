@@ -30,14 +30,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        baseArray[0] = baseArray[0].sorted {
-            (taskOne:TaskModel, taskTwo:TaskModel) -> Bool in
-            
-            //Comparison Logic
-            return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
-        }
-        
-        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,15 +66,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "showTaskDetail" {
             let detailVC: TaskDetailViewController = segue.destinationViewController as TaskDetailViewController
             let indexPath = self.tableView.indexPathForSelectedRow()
-            let thisTask = baseArray[indexPath!.section][indexPath!.row]
+            let thisTask = fetchedResultController.objectAtIndexPath(indexPath!) as TaskModel
             detailVC.detailTaskModel = thisTask
-            detailVC.mainVC = self
         }
         
         else if segue.identifier == "showTaskAdd" {
             let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
-            addTaskVC.mainVC = self
-            
         }
     }
     
@@ -136,15 +125,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func taskFetchRequest () -> NSFetchRequest {
         let fetchRequest = NSFetchRequest(entityName: "TaskModel")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let completedDescriptor = NSSortDescriptor(key: "completed", ascending: true)
+        fetchRequest.sortDescriptors = [completedDescriptor, sortDescriptor]
         
         return fetchRequest
     }
     
-    func getFetchedResultsController() -> NSFetchedResultsController {
-        fetchedResultController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+    func getFetchedResultsController () -> NSFetchedResultsController {
+        fetchedResultController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "completed", cacheName: nil)
+        
+        return fetchedResultController
     }
 }
-
-
-
