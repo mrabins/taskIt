@@ -2,28 +2,118 @@
 //  SettingsViewController.swift
 //  TaskIt
 //
-//  Created by Mark Rabins on 8/29/15.
+//  Created by Mark Rabins on 8/30/15.
 //  Copyright (c) 2015 self.swift. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     
     @IBOutlet weak var capitalizeTableView: UITableView!
-    @IBOutlet weak var completeNewToDoTableView: UITableView!
+    @IBOutlet weak var completeNewTodoTableView: UITableView!
     @IBOutlet weak var versionLabel: UILabel!
-
+    
+    let kVersionNumber = "1.0"
+    let kShouldCapitalizeTaskKey = "shouldCapitalizeTask"
+    let kShouldCompleteNewTodoKey = "completeNewTodo"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        
+        self.capitalizeTableView.delegate = self
+        self.completeNewTodoTableView.dataSource = self
+        self.capitalizeTableView.scrollEnabled = false
+        
+        self.completeNewTodoTableView.delegate = self
+        self.completeNewTodoTableView.dataSource = self
+        self.completeNewTodoTableView.scrollEnabled = false
+        
+        self.title = "Settings"
+        
+        self.versionLabel.text = kVersionNumber
+        
+        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: ("doneBarButtonItemPressed:"))
+        self.navigationItem.leftBarButtonItem = doneButton
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func doneBarButtonItemPressed (barButtonItem: UIBarButtonItem) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
-
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if tableView == self.capitalizeTableView {
+            var capitalizeCell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("capitalizeCell") as UITableViewCell
+            if indexPath.row == 0 {
+                capitalizeCell.textLabel?.text = "No do not Capitalize"
+                if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCapitalizeTaskKey) == false {
+                    capitalizeCell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                }
+                else {
+                    capitalizeCell.accessoryType = UITableViewCellAccessoryType.None
+                }
+            }
+            else {
+                capitalizeCell.textLabel?.text = "Yes Capitalize!"
+                if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCapitalizeTaskKey) == true {
+                    capitalizeCell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                }
+                else {
+                    capitalizeCell.accessoryType = UITableViewCellAccessoryType.None
+                }
+            }
+            return capitalizeCell
+        }
+        else {
+            var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("completeNewTodoCell") as UITableViewCell
+            
+            if indexPath.row == 0 {
+                cell.textLabel?.text = "Do not complete Task"
+                if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCompleteNewTodoKey) == false {
+                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    
+                }
+                else {
+                    cell.accessoryType = UITableViewCellAccessoryType.None
+                }
+                
+            }
+            else {
+                cell.textLabel?.text = "Complete Task"
+                if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCompleteNewTodoKey) == true {
+                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    
+                }
+                else {
+                    cell.accessoryType = UITableViewCellAccessoryType.None
+                }
+            }
+            return cell
+            
+        }
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 30
+    }
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == self.capitalizeTableView{
+            return "Capitalize New Task?"
+        }
+        else {
+            return "Complete New Task?"
+        }
+    }
 }
+

@@ -20,7 +20,7 @@
 		13B6F82A1A9A92630048B5A2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B6F8291A9A92630048B5A2 /* CoreData.framework */; };
 		13B6F82D1A9A96A90048B5A2 /* TaskItModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13B6F82B1A9A96A90048B5A2 /* TaskItModel.xcdatamodeld */; };
 		13B6F82F1A9A97CC0048B5A2 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6F82E1A9A97CC0048B5A2 /* TaskModel.swift */; };
-		13F10D561B92D85E00D86275 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F10D551B92D85E00D86275 /* SettingsViewController.swift */; };
+		13F10D581B92E37300D86275 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F10D571B92E37300D86275 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,7 @@
 		13B6F8291A9A92630048B5A2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		13B6F82C1A9A96A90048B5A2 /* TaskItModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskItModel.xcdatamodel; sourceTree = "<group>"; };
 		13B6F82E1A9A97CC0048B5A2 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
-		13F10D551B92D85E00D86275 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		13F10D571B92E37300D86275 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +98,7 @@
 				138C37441A71BB8F00CFDCC6 /* ViewController.swift */,
 				1351DB581A7A0B9500CCB8DE /* TaskDetailViewController.swift */,
 				1315B0141A8C6B2900B90BC0 /* AddTaskViewController.swift */,
-				13F10D551B92D85E00D86275 /* SettingsViewController.swift */,
+				13F10D571B92E37300D86275 /* SettingsViewController.swift */,
 				13A9872A1A888CE600B3EF6A /* Date.swift */,
 				138C37621A71C26600CFDCC6 /* TaskCell.swift */,
 				13B6F82B1A9A96A90048B5A2 /* TaskItModel.xcdatamodeld */,
@@ -245,7 +245,7 @@
 				1351DB591A7A0B9500CCB8DE /* TaskDetailViewController.swift in Sources */,
 				13B6F82F1A9A97CC0048B5A2 /* TaskModel.swift in Sources */,
 				1315B0151A8C6B2900B90BC0 /* AddTaskViewController.swift in Sources */,
-				13F10D561B92D85E00D86275 /* SettingsViewController.swift in Sources */,
+				13F10D581B92E37300D86275 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
