@@ -9,13 +9,19 @@
 import UIKit
 import CoreData
 
+protocol AddTaskViewControllerDelegate {
+    func addTask(message: String)
+    func addTaskCanceled(message: String)
+}
+
 class AddTaskViewController: UIViewController {
         
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var subtaskTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
-
+    var delegate:AddTaskViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,10 +34,10 @@ class AddTaskViewController: UIViewController {
     }
     
     @IBAction func cancelButtonTapped(sender: UIButton) {
+        delegate?.addTaskCanceled("Task was not added!")
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
-    
 
     @IBAction func addTaskButtonTapped(sender: UIButton) {
         let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
@@ -54,16 +60,11 @@ class AddTaskViewController: UIViewController {
             NSUserDefaults.standardUserDefaults().boolForKey(kShouldCompleteNewTodoKey) == true {
                 task.completed = true
                 
-                
-                
         }
         else {
             task.completed = false
-
             
         }
-        
-        
         appDelegate.saveContext()
         
         var request = NSFetchRequest(entityName: "TaskModel")
@@ -73,7 +74,7 @@ class AddTaskViewController: UIViewController {
         for res in results {
             println(res)
         }
-        
+        delegate?.addTask("Task Added")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
