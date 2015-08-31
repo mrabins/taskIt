@@ -34,8 +34,9 @@ class AddTaskViewController: UIViewController {
     }
     
     @IBAction func cancelButtonTapped(sender: UIButton) {
-        delegate?.addTaskCanceled("Task was not added!")
         self.dismissViewControllerAnimated(true, completion: nil)
+        delegate?.addTaskCanceled("Task was not added!")
+
         
     }
 
@@ -74,7 +75,8 @@ class AddTaskViewController: UIViewController {
         for res in results {
             println(res)
         }
-        delegate?.addTask("Task Added")
         self.dismissViewControllerAnimated(true, completion: nil)
+        delegate?.addTask("Task Added")
+
     }
 }
