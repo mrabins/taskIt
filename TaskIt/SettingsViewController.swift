@@ -16,9 +16,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var versionLabel: UILabel!
     
     let kVersionNumber = "1.0"
-    let kShouldCapitalizeTaskKey = "shouldCapitalizeTask"
-    let kShouldCompleteNewTodoKey = "completeNewTodo"
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +23,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         // Do any additional setup after loading the view.
         
         self.capitalizeTableView.delegate = self
-        self.completeNewTodoTableView.dataSource = self
+        self.capitalizeTableView.dataSource = self
         self.capitalizeTableView.scrollEnabled = false
         
         self.completeNewTodoTableView.delegate = self
@@ -37,7 +34,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.versionLabel.text = kVersionNumber
         
-        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: ("doneBarButtonItemPressed:"))
+        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("doneBarButtonItemPressed:"))
         self.navigationItem.leftBarButtonItem = doneButton
     }
     
@@ -108,15 +105,16 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         return 30
     }
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if tableView == self.capitalizeTableView{
-            return "Capitalize New Task?"
+        if tableView == self.capitalizeTableView {
+            return "Capitalize new Task?"
         }
         else {
-            return "Complete New Task?"
+            return "Complete new Task?"
         }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         if tableView == self.capitalizeTableView {
             if indexPath.row == 0 {
                 NSUserDefaults.standardUserDefaults().setBool(false, forKey: kShouldCapitalizeTaskKey)
@@ -133,6 +131,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: kShouldCompleteNewTodoKey)
             }
         }
+        
         NSUserDefaults.standardUserDefaults().synchronize()
         tableView.reloadData()
     }
