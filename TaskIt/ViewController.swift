@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, TaskDetailViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -68,6 +68,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let indexPath = self.tableView.indexPathForSelectedRow()
             let thisTask = fetchedResultController.objectAtIndexPath(indexPath!) as TaskModel
             detailVC.detailTaskModel = thisTask
+            detailVC.delegate = self
         }
         
         else if segue.identifier == "showTaskAdd" {
@@ -145,4 +146,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return fetchedResultController
     }
+    
+    // TaskDetailViewControllerDelegate
+    
+    func taskDetailEdited() {
+        println("taskDetailEdited")
+    }
+    
+    
 }
