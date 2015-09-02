@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>DDC82314-26D8-486A-A582-60FEDA80ED5F</string>
 	<key>IDESourceControlProjectName</key>
-	<string>TaskIt</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>C3BCB29B55C3B0F853F767A3149E37971739474B</key>
 		<string>github.com:mrabins/taskIt.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TaskIt.xcodeproj</string>
+	<string>TaskIt.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C3BCB29B55C3B0F853F767A3149E37971739474B</key>
