@@ -13,7 +13,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var fetchedResultController:NSFetchedResultsController = NSFetchedResultsController()
     
     override func viewDidLoad() {
@@ -26,6 +25,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         fetchedResultController.delegate = self
         fetchedResultController.performFetch(nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: ("iCloudUpdated"), name: "coreDataUpdated", object: nil)
+        
+
         
     }
     
@@ -127,7 +129,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         else {
             thisTask.completed = true
         }
-        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+    ModelManager.instance.saveContext()
+        
     }
     
     //NSFetchedResultsControllerDelegrate
@@ -149,7 +152,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func getFetchedResultsController () -> NSFetchedResultsController {
-        fetchedResultController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "completed", cacheName: nil)
+        fetchedResultController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: ModelManager.instance.managedObjectContext!, sectionNameKeyPath: "completed", cacheName: nil)
         
         return fetchedResultController
     }
@@ -176,5 +179,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    //iCloud Notification
+    func iCloudUpdated() {
+        tableView.reloadData()
+    }
     
 }
